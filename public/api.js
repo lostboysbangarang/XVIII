@@ -1,3 +1,5 @@
+// import { prettyPrintJson } from 'pretty-print-json';
+
 const API = {
   async getLastWorkout() {
     let res;
@@ -12,6 +14,8 @@ const API = {
   },
   async addExercise(data) {
     const id = location.search.split("=")[1];
+    console.log(`\n\n\tData:\n`, data)
+    console.log(`\n\tID:\n`, id);
 
     const res = await fetch("/api/workouts/" + id, {
       method: "PUT",

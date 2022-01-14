@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "sudo systemctl start mongod && node server.js",
     "watch": "nodemon server.js",
-    "seed": "node seeders/seed.js"
+    "seed": "node seeders/seed.js",
+    "dev": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +16,10 @@
     "express": "^4.17.2",
     "mongojs": "^3.1.0",
     "mongoose": "^5.3.16",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pretty-print-json": "^1.1.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
   }
 }
