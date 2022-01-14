@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
+// Dayo = new Date().now()
 var workoutSchema = new mongoose.Schema({
     sweetMoves: [
         {
@@ -34,12 +35,16 @@ var workoutSchema = new mongoose.Schema({
             sets:{
                 type:Number,
             },
-            date: {
-                type:Date,
-                default:Date.now()
-            }
         }
-    ]
+    ],
+    date:[
+        {
+        year:{ type:Number,  default:Date.prototype.getFullYear},
+        month:{ type:Number, default:Date.prototype.getMonth},
+        day:{ type:Number, default:Date.prototype.getDate},
+        hour:{ type:Number, default:Date.prototype.getUTCHours},
+        
+    }]
 });
 
 //Export the model
