@@ -13,9 +13,10 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect MongoDB at default port 27017.
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/workouts', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useUnifiedTopology: true
 }, (err) => {
     if (!err) {
         console.log('MongoDB Connection Succeeded.')

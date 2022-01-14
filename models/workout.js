@@ -2,50 +2,63 @@ const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
 var werkoutSchema = new mongoose.Schema({
+    // idz: {type:  Number, required: true, index: true},
     exercises: {
         name: {
             type: String,
             trim: true,
-            required: "Enter a workout name"
+            default: null
         },
         type: {
             type: String,
-            required: "Enter workout type"
+            default: null
         },
         duration: {
             type: Number,
-            required: "Enter workout duration"
+            default: null
         },
         distance: {
-            tytpe: Number,
+            type: Number,
+            default: null
         },
         sets: {
-            type: Number
+            type: Number,
+            default: null
         },
         reps: {
-            type: Number
+            type: Number,
+            default: null
         },
         weights: {
-            type: Number
+            type: Number,
+            default: null
         },
+    },
+    date: {
         year: {
-            type: Date,
-            default: Date.prototype.getFullYear
+            type: Number,
+            default: (new Date).getFullYear()
         },
         month: {
-            type: Date,
-            default: Date.prototype.getMonth
+            type: Number,
+            default: (new Date).getMonth()
         },
         day: {
-            type: Date,
-            default: Date.prototype.getDate
+            type: Number,
+            default: (new Date).getDate()
         },
         hour: {
-            type: Date,
-            default: Date.prototype.getUTCHours
+            type: Number,
+            default: (new Date).getUTCHours()
         },
+    },
+    totals: {
+        duration: {type: Number, default: null},
+        weight: {type: Number, default: null},
+        distance: {type: Number, default: null}
     }
 });
-
+// werkoutSchema.index({idz: 1});
 //Export the model
+console.log(werkoutSchema.tree)
 module.exports = mongoose.model('Workout', werkoutSchema);

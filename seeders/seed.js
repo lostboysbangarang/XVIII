@@ -1,15 +1,18 @@
 const mongoose = require('mongoose');
-const db = require('../models');
+const db = require(`../models/workout.js`);
 
 mongoose.connect('mongodb://localhost/workout', {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
 });
-
+const Dayyyyo = new Date;
+  let year = Dayyyyo.getFullYear()
+  let month = Dayyyyo.getMonth()
+  let day = Dayyyyo.getDate()
+  let hour = Dayyyyo.getUTCHours()
 const workoutSeed = [
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 9)),
     exercises: [
       {
         type: 'resistance',
@@ -20,9 +23,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 9],
+        hour: [hour- 3]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [20],
+        weight: [100]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 8)),
     exercises: [
       {
         type: 'resistance',
@@ -33,9 +50,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 12],
+        hour: [hour- 6]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [20],
+        weight: [300]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 7)),
     exercises: [
       {
         type: 'resistance',
@@ -46,9 +77,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 14],
+        hour: [hour- 4]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [25],
+        weight: [185]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 6)),
     exercises: [
       {
         type: 'cardio',
@@ -57,9 +102,23 @@ const workoutSeed = [
         distance: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 15],
+        hour: [hour- 7]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [25],
+        distance: [4]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 5)),
     exercises: [
       {
         type: 'resistance',
@@ -70,9 +129,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 18],
+        hour: [hour- 4]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [20],
+        weight: [285]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 4)),
     exercises: [
       {
         type: 'resistance',
@@ -83,9 +156,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 19],
+        hour: [hour- 6]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [20],
+        weight: [300]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 3)),
     exercises: [
       {
         type: 'resistance',
@@ -96,9 +183,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 21],
+        hour: [hour- 6]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [30],
+        weight: [300]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 2)),
     exercises: [
       {
         type: 'resistance',
@@ -109,9 +210,23 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 22],
+        hour: [hour- 3]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [20],
+        weight: [300]
+      }
+    ]
   },
   {
-    day: new Date(new Date().setDate(new Date().getDate() - 1)),
     exercises: [
       {
         type: 'resistance',
@@ -122,12 +237,42 @@ const workoutSeed = [
         sets: 4,
       },
     ],
+    date: [
+      {
+        year: [year],
+        month: [month],
+        day: [day - 23],
+        hour: [hour- 6]
+
+      }
+    ],
+    totals: [
+      {
+        duration: [20],
+        weight: [300]
+      }
+    ]
   },
 ];
 
-db.Workout.deleteMany({})
-  .then(() => db.Workout.collection.insertMany(workoutSeed))
+// console.log(`\n\n\t\t\tdb\n`, new db);
+
+// runny = (() => {
+//   y = db.collection.getIndexes();
+//   return y;
+// })
+// console.log(db.getIndexes())
+
+// db.collection.getIndexes().then(res => {
+//   console.log(res)
+// })
+
+db.collection.insertMany(workoutSeed)
+  // .then(() => db.collection.insertMany(workoutSeed))
+  // // .then(() => {
+  // // })
   .then((data) => {
+    
     console.log(data.result.n + ' records inserted!');
     process.exit(0);
   })
@@ -135,3 +280,4 @@ db.Workout.deleteMany({})
     console.error(err);
     process.exit(1);
   });
+  
