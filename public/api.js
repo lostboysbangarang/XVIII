@@ -10,6 +10,14 @@ const API = {
 
     return json[json.length - 1];
   },
+  async aggro() {
+    const res = await fetch("/api/workouts/aggro", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await res.json();
+    return json;
+  },
   async addExercise(data) {
     const id = location.search.split("=")[1];
     console.log(`Idz:\t`, id);

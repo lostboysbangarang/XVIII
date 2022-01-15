@@ -38,47 +38,48 @@ router.put(`/api/workouts/:id`, async (req, res) => {
     await Workout.findByIdAndUpdate(
                                     {_id: req.params.id},
                                     {
-                                        $inc:{
-                                            $push: {
-                                                totals:{
-                                                    duration: { $sum: "$exercises.duration" }, 
-                                                    // $each:[{
-                                                    //     // weight: { $sum: '$exercises.weight'}
-                                                    // }]
-                                                }
+                                        // $inc:{
+                                        //     $push: {
+                                        //         totals:{
+                                        //             duration: { $sum: "$exercises.duration" }, 
+                                        //             // $each:[{
+                                        //             //     // weight: { $sum: '$exercises.weight'}
+                                        //             // }]
+                                        //         }
 
-                                            }
-                                        }
-                                        // $push:{
-                                        //     exercises:{
-                                        //         $each:[{
-                                        //             type:req.body.type,
-                                        //             name:req.body.name,
-                                        //             distance:req.body.distance,
-                                        //             duration:req.body.duration,
-                                        //             weight:req.body.weight,
-                                        //             sets:req.body.sets,
-                                        //             reps:req.body.reps
-                                        //         }]
                                         //     }
                                         // }
+                                        $push:{
+                                            exercises:{
+                                                $each:[{
+                                                    type:req.body.type,
+                                                    name:req.body.name,
+                                                    distance:req.body.distance,
+                                                    duration:req.body.duration,
+                                                    weight:req.body.weight,
+                                                    sets:req.body.sets,
+                                                    reps:req.body.reps
+                                                }]
+                                            }
+                                        }
                                         // $push:{
                                             
                                             // }
                                         },
                                         {new : false}
                                         )
-                                        .then(async () =>{
-                                            // console.log(`Response`, response)
-                                            await Workout.aggregate([{
-                                                $addFeilds:{
-                                                    totals: {
-                                                        duration: {$sum: "$exercises.duration"}
-                                                    }
-                                                }
-                                            }]).then((db) =>{
-                                                res.json(db);
-                                            })})
+                                        // .then(() =>{
+                                        //     // console.log(`Response`, response)
+                                        //     Workout.aggregate([{
+                                        //         $group:{
+                                        //             _id: "$exercise",
+                                        //             totals: {
+                                        //                 duration: {$sum: "$exercises.duration"}
+                                        //             }
+                                        //         }
+                                        //     }]).then((db) =>{
+                                        //         res.json(db);
+                                        //     })})
                                         //                                 {_id: req.params.id},
                                         //                                 {
                                         //                                     // $push:{
@@ -114,7 +115,7 @@ router.put(`/api/workouts/:id`, async (req, res) => {
                                             // fetchTotals()
                                     // ))
                                     .then(dbWerk => {
-                                        console.log(dbWerk);
+                                        // console.log(dbWerk);
                                         res.json(dbWerk)
                                     }).catch(err => {
                                         res.json(err)
@@ -127,26 +128,25 @@ router.put(`/api/workouts/:id`, async (req, res) => {
 
 //                 })
 // }
-router.post(`/api/workouts/totals`, (req, res) =>{
-    Workout.findByIdAndUpdate(
-                                {_id: req.params.id},
-                                {
-                                    $push:{
-                                        totals:{
-                                            $each:{
-                                                duration: {$sum: '$exercises.duration'}, 
-                                                weight: {$sum: '$exercises.weight'}
-                                            }
-                                        }
-                                    }
-                                },
-                                {new : true}
-                            ).then(dbWerk => {
-                                console.log(dbWerk);
-                                res.json(dbWerk)
-                            }).catch(err => {
-                                res.json(err)
-                            })
+router.get(`/api/workouts/aggro`, (req, res) =>{
+    Workout.aggregate(
+        [
+            {
+                $grep: {
+                    _id: "$exercises",
+                    totals:{
+                        duration: { $sum: "$exercises.duration"}
+
+                    }
+                }
+            }
+        ], function(result, err) {
+            if(err) {res.send(err)} else {
+            res.json(result)
+            }
+        }
+    )
+    // res.json()
 })
 
 router.get("/api/workouts", (req, res) => {

@@ -120,6 +120,7 @@ async function handleFormSubmit(event) {
   }
   // workoutID = workout._id
   await API.addExercise(exercises);
+  await API.aggro()
   clearInputs();
   toast.classList.add("success");
 }
