@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "sudo systemctl start mongod && concurrently \"npm run start\" \"npm run seed\"",
-    "watch": "nodemon server.js",
+    "dev": "sudo systemctl start mongod && concurrently \"npm run start\" \"npm run seed\"",    "watch": "nodemon server.js",
+    "devv": "sudo systemctl start mongod && npm run start",
     "del": "node delete.js",
     "seed": "node seeders/seed.js"
   },

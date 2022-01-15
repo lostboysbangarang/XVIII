@@ -2,36 +2,39 @@ const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
 var werkoutSchema = new mongoose.Schema({
-    // idz: {type:  Number, required: true, index: true},
+    day: {
+        type: Date,
+        default: Date.now
+    },
     exercises: {
+        type: {
+            type: String,
+            
+        },
         name: {
             type: String,
             trim: true,
-            default: null
-        },
-        type: {
-            type: String,
-            default: null
-        },
-        duration: {
-            type: Number,
-            default: null
+            
         },
         distance: {
             type: Number,
-            default: null
+            
+        },
+        duration: {
+            type: Number,
+            
         },
         sets: {
             type: Number,
-            default: null
+            
         },
         reps: {
             type: Number,
-            default: null
+            
         },
-        weights: {
+        weight: {
             type: Number,
-            default: null
+            
         },
     },
     date: {
@@ -53,9 +56,9 @@ var werkoutSchema = new mongoose.Schema({
         },
     },
     totals: {
-        duration: {type: Number, default: null},
-        weight: {type: Number, default: null},
-        distance: {type: Number, default: null}
+        duration: {type: Number},
+        weight: {type: Number},
+        distance: {type: Number}
     }
 });
 // werkoutSchema.index({idz: 1});

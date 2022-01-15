@@ -13,21 +13,25 @@ const completeButton = document.querySelector("button.complete");
 const addButton = document.querySelector("button.add-another");
 const toast = document.querySelector("#toast");
 const newWorkout = document.querySelector(".new-workout")
-
+// const APII = require(`./api`);
 let workoutType = null;
 let shouldNavigateAway = false;
 
 async function initExercise() {
   let workout;
-
-  if (location.search.split("=")[1] === undefined) {
+  console.log(`Location?`, location);
+  if (location.search.split("=")[1] === undefined || location.search === "") {
     workout = await API.createWorkout()
-    console.log(workout)
+    console.log(`\n\nWorkout\n`,workout)
   }
   if (workout) {
     location.search = "?id=" + workout._id;
   }
-
+  // else {
+  //   location.search = "?id=undefined"
+  //   initExercise();
+  // }
+  // console.log(`Workout?`, workout._id);
 }
 
 initExercise();
@@ -98,23 +102,24 @@ function validateInputs() {
 async function handleFormSubmit(event) {
   event.preventDefault();
 
-  let workoutData = {};
+  let exercises = {};
 
   if (workoutType === "cardio") {
-    workoutData.type = "cardio";
-    workoutData.name = cardioNameInput.value.trim();
-    workoutData.distance = Number(distanceInput.value.trim());
-    workoutData.duration = Number(durationInput.value.trim());
+    exercises.type = "cardio";
+    exercises.name = cardioNameInput.value.trim();
+    exercises.distance = Number(distanceInput.value.trim());
+    exercises.duration = Number(durationInput.value.trim());
+    
   } else if (workoutType === "resistance") {
-    workoutData.type = "resistance";
-    workoutData.name = nameInput.value.trim();
-    workoutData.weight = Number(weightInput.value.trim());
-    workoutData.sets = Number(setsInput.value.trim());
-    workoutData.reps = Number(repsInput.value.trim());
-    workoutData.duration = Number(resistanceDurationInput.value.trim());
+    exercises.type = "resistance";
+    exercises.name = nameInput.value.trim();
+    exercises.weight = Number(weightInput.value.trim());
+    exercises.sets = Number(setsInput.value.trim());
+    exercises.reps = Number(repsInput.value.trim());
+    exercises.duration = Number(resistanceDurationInput.value.trim());
   }
-
-  await API.addExercise(workoutData);
+  // workoutID = workout._id
+  await API.addExercise(exercises);
   clearInputs();
   toast.classList.add("success");
 }

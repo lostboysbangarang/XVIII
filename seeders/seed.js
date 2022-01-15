@@ -32,12 +32,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [20],
-        weight: [100]
+        duration: 20,
+        weight: 100
       }
-    ]
+    
   },
   {
     exercises: [
@@ -59,12 +59,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [20],
-        weight: [300]
+        duration: 20,
+        weight: 300
       }
-    ]
+    
   },
   {
     exercises: [
@@ -86,12 +86,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [25],
-        weight: [185]
+        duration: 25,
+        weight: 185
       }
-    ]
+    
   },
   {
     exercises: [
@@ -111,12 +111,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [25],
-        distance: [4]
+        duration: 25,
+        distance: 4
       }
-    ]
+    
   },
   {
     exercises: [
@@ -138,12 +138,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [20],
-        weight: [285]
+        duration: 20,
+        weight: 285
       }
-    ]
+    
   },
   {
     exercises: [
@@ -165,12 +165,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [20],
-        weight: [300]
+        duration: 20,
+        weight: 300
       }
-    ]
+    
   },
   {
     exercises: [
@@ -192,12 +192,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [30],
-        weight: [300]
+        duration: 30,
+        weight: 300
       }
-    ]
+    
   },
   {
     exercises: [
@@ -219,12 +219,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [20],
-        weight: [300]
+        duration: 20,
+        weight: 300
       }
-    ]
+    
   },
   {
     exercises: [
@@ -246,12 +246,12 @@ const workoutSeed = [
 
       }
     ],
-    totals: [
+    totals:
       {
-        duration: [20],
-        weight: [300]
+        duration: 20,
+        weight: 300
       }
-    ]
+    
   },
 ];
 
